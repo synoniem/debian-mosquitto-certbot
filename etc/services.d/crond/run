@@ -1,0 +1,2 @@
+#!/usr/bin/execlineb -P
+/usr/sbin/cron -f -l 2

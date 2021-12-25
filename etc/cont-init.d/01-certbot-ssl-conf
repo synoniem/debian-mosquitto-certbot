@@ -1,0 +1,41 @@
+#!/usr/bin/with-contenv bash
+# Check and if needed install/renew certs
+# 	Note that this script (certbot.sh) is also
+# 	run weekely from /etc/periodic/weekly/croncert.sh
+#
+#	WARNING: 
+#		Duing the weekly check, if certs are renewed, 
+#		the mosquitto process is restarted, causing
+#		a brief (few second) unavoidable service disruption
+#
+/certbot.sh
+
+# This script assumes a standard persistent directory and file layout of:
+#	/mosquitto/
+#		conf/
+#			mosquitto.conf	- the main configuation file
+#			passwd		- the password file
+#		log/
+#
+#	The presense and location of mosquitto.conf isn't optional.
+#       (We could allow user definition via environment var, but honestly why bother)
+#
+#	The location of the log directory and passwd file can be
+#	mapped differently in mosquitto.conf.  If so, this script will
+#	simply generate warnings, but continue to function.
+#
+if [ ! -d "/mosquitto/log" ]; then
+	echo "WARNING: missing /mosquitto/log directory"
+	echo "WARNING: ignore if your mosquitto.conf has a non-standard configuration" 
+fi
+
+# create blank passwd if it doesn't exist
+if [ -d "/mosquitto/conf" ]; then
+	if [ ! -f "/mosquitto/conf/passwd" ]; then
+		echo "Creating blank passwd file at /mosquitto/conf/passwd"
+		touch /mosquitto/conf/passwd
+	fi
+else
+	echo "WARNING: /mosquitto/conf should be mapped to persistent docker volume"
+	echo "WARNING: ignore if your mosquitto.conf has a non-standard configuration" 
+fi
