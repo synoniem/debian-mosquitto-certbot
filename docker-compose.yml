@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 services:
   mqtt:
-    image: synoniem/alpine-mosquitto-certbot
+    image: synoniem/debian-mosquitto-certbot
     networks:
       - backend-net
     ports:
