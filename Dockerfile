@@ -1,4 +1,4 @@
-FROM python:3-slim-buster
+FROM python:3-slim-bullseye
 LABEL maintainer synoniem https://github.com/synoniem
 
 # Set environment variables.
@@ -33,7 +33,7 @@ RUN \
         certbot \
 		mosquitto \
 		mosquitto-clients && \
-		apt-get autoremove -y && \ 
+		apt-get autoremove -y && \
 		rm -rf /var/lib/lists/* && \
 		rm -rf /etc/cron.*/*
 
