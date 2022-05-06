@@ -18,8 +18,9 @@ RUN \
 	mkdir /mosquitto && \
 	mkdir /mosquitto/log && \
 	mkdir /mosquitto/conf && \
+	apt-get clean && \
 	apt-get update && \
-	apt-get upgrade && \
+	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
 		bash \
 		cron \
