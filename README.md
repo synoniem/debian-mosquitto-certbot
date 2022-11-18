@@ -1,5 +1,7 @@
 # debian-mosquitto-certbot
 
+2022-11-18 For a even more easy way to run a Mosquitto MQTT server take a look at my docker-compose script at [mosquitto-traefik-letsencrypt](https://github.com/synoniem/mosquitto-traefik-letsencrypt.git) with Traefik and Let's Encrypt.
+
 An automated build that integrates the [Mosquitto MQTT server](https://mosquitto.org/) with [Certbot](https://certbot.eff.org/) on top of [Debian linux](https://www.debian.org/).
 This repo is a reworked version from saberone/mosquitto-docker-letsencrypt. It is now using a [Just Containers s6-overlay](https://github.com/just-containers/s6-overlay) as a init system.
 
